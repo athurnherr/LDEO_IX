@@ -8,6 +8,9 @@
 
 % CHANGES BY ANT:
 %   Jan  7, 2009: - tightened use of exist()
+%   Aug 15, 2022: - EPA: added support for separate folder for logs
+%                   EPA: added ".TXT" as suffix for logs
+%                   EPA: support ADCP serial numbers above 9999
 
 function p=getadcpserial(f,p)
 % try to read .LOG or RECOVE.LOG
@@ -37,7 +40,11 @@ end
 
 % could not find instrument in lookup table, try log file
 
-flog=findlogwh(f.ladcpdo);
+if isfield(f,'ladcplogdo')
+ flog=findlogwh(f.ladcplogdo);
+else
+ flog=findlogwh(f.ladcpdo);
+end
 
 if length(flog)>1
  [p.down_sn,p.down_rawlog]=readserialwh(flog);
@@ -78,7 +85,12 @@ end
  
 
 % up looker 
-flog=findlogwh(f.ladcpup);
+if isfield(f,'ladcplogup')
+ flog=findlogwh(f.ladcplogup);
+else
+ flog=findlogwh(f.ladcpup);
+end
+
 if length(flog)>1
  [p.up_sn,p.up_rawlog]=readserialwh(flog);
 else
@@ -137,6 +149,16 @@ if dum>0
   return
  end
  flog=[fin(1:max(dum)),'log'];
+ if exist(flog,'file')
+  return
+ end
+
+ % check if .TXT exists
+ flog=[fin(1:max(dum)),'TXT'];
+ if exist(flog,'file')
+  return
+ end
+ flog=[fin(1:max(dum)),'txt'];
  if exist(flog,'file')
   return
  end
@@ -222,7 +244,7 @@ function [s,A]=readserialwh(f)
  ii=findstr(As','  Instrument S/N:');
  if length(ii)>0
   s=sscanf(char(As(ii(1)+17+[1:9])'),'%g')';
-  if (s>0 & s<9999)
+  if (s>0 & s<99999)
 %  disp([' serial number is : ',int2str(s)])
   else
    s=nan;
