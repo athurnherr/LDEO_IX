@@ -16,6 +16,7 @@ function handle = streamer(fig,TitleString)
 % Mods:
 %	11/94 adapted to 4.2
 %   06/95 clean up, added alternate figure option.
+%   Aug 15, 2022: EPA: disable LaTeX interpreter for streamer text
 
 if(nargin<2)
 	TitleString = fig;
@@ -46,4 +47,4 @@ end
 title(TitleString);
 axes(ax);
 
-set(handle,'fontweight','bold','fontsize',16);
+set(handle,'fontweight','bold','fontsize',16,'interpreter','none');

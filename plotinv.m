@@ -18,6 +18,9 @@ function plotinv(dr,d,p,ps)
 %	Mar 18, 2005: - in cases of bad range, [geterr.m] does not return
 %					finite velocity errors; therefore the code was
 %					changed so as not to bomb on figure(1) any more
+%   Aug 15, 2022: EPA: disable LaTeX interpreter for software version
+%   July 25, 2024: LC: altered legend of Figure 1, added the meaning of 
+%                  colour letter to the left panel depth vs velocity.
 
 if existf(dr,'range_do');
  zpmax=p.maxdepth+maxnan([0;dr.range_do]);
@@ -51,7 +54,7 @@ plot(ua*100,-z,'-r','linewidth',2.5)
 grid
 hold on
 plot(va*100,-z,'--g','linewidth',2.5)
-ct=[' U(-) V(--)'];
+ct=[' U(r-) V(g--)']; % also list the colours in the legend
 if existf(dr,'uerr')==1
  plot([va-dr.uerr]*100,-z,':g','linewidth',1.8)
  plot([va+dr.uerr]*100,-z,':g','linewidth',1.8)
@@ -331,7 +334,7 @@ grid
 set(gca,'fontsize',10)
 
 axes('position',[0.6 0.05 0.01 0.01])
-text(0,0,p.software)
+text(0,0,p.software,'interpreter','none')
 axis off
 
 
