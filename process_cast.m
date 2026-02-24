@@ -502,8 +502,14 @@ if pcs.begin_step <= pcs.cur_step
   clf
   % experimental diagnostic of battery voltage
   %
+
   p=battery(p);
   
+  if numel(p.xmv)>1
+      p=battery_up(p);
+  end
+  
+ 
   %
   % complete task by repeating the most important warnings
   %

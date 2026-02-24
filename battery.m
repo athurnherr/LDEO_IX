@@ -22,14 +22,15 @@ end
 if p.battery>batlevel(1)
  bc='g';
 elseif p.battery>batlevel(2)
- bc='y';
+ bc='r';
 else
   warn=([' Battery voltage is low : ',num2str(round(p.battery*10)/10),' V'])
     p.warn(size(p.warn,1)+1,1:length(warn))=warn;
  bc='r';
 end
 text(0,0,['Battery Voltage is ',num2str(round(p.battery*10)/10),' V'],'color',bc,...
-       'fontsize',14,'fontweight','bold')
+       'fontsize',14,'fontweight','bold',...
+       'Tag', 'Battery_do')
 
 disp([' Battery Voltage is ',num2str(round(p.battery*10)/10),' V'])
 
