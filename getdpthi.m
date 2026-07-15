@@ -525,6 +525,9 @@ if (sum(ii)~=length(ii)) & p.cut>0
   ii=find(d.time_jul>(d.time_jul(end)-p.navtime_av));
   elon=median(d.slon(ii));
   elat=median(d.slat(ii));
+  if isfinite(elon+elat)
+   p.pose=[fix(elat), (elat-fix(elat))*60, fix(elon), (elon-fix(elon))*60];
+  end
   disp(' find new start end position')
  elseif existf(p,'poss')
   % don't have time variable navigation data, adjust end position
