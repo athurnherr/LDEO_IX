@@ -344,7 +344,7 @@ z =([1:nz]')*ps.dz;
 
 A1o=A1;
 A2o=A2;
-do=d;
+d_orig=d;
 
 %### add weights to data
 [A2,A1,d,idoc,iupc]=lainweig(A2,A1,d,wm);
@@ -714,7 +714,7 @@ de.dfit=[A2,A1]*[uocean(:,1);uctd(:,1)];
 de.A=[A2,A1];
 de.A1o=A1o;
 de.A2o=A2o;
-de.do=do;
+de.do=d_orig;
 de.jprof=jprof;
 de.jbin=jbin;
 end

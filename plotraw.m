@@ -220,7 +220,7 @@ if existf(d,'xmv')
 end
 
 %=============================================
-function checkbeam(t,ax,do)
+function checkbeam(t,ax,is_bottom)
 % check beam performance
 
 %%%bl=size(t,2); 
@@ -229,7 +229,7 @@ bl = length(t);	%%% BH fix
 iend=fix(bl/2):bl;
 
 tax=mean(ax(1:2));
-if do
+if is_bottom
  tay=ax(3);
  tflag='bottom';
 else
