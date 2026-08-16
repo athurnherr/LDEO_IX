@@ -79,7 +79,7 @@ f = setdefv(f,'nav_lon_field',3);
 % 	0 for elapsed time in seconds
 % 	1 for year-day (1.0 = Jan 1, 00:00)
 % 	2 for Visbeck's Gregorian (see gregoria.m)
-p = setdefv(p,'nav_time_base',0);
+f = setdefv(f,'nav_time_base',0);
 
 %======================================================================
 
