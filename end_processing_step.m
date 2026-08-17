@@ -22,6 +22,6 @@ end
 
 if any(ismember(pcs.cur_step,p.checkpoints))
   disp(sprintf('SAVING CHECKPOINT %s_%d',f.checkpoints,pcs.cur_step));
-  eval(sprintf('save %s_%d',f.checkpoints,pcs.cur_step));
+  eval(sprintf('save %s_%d.mat',f.checkpoints,pcs.cur_step));
 end
 
